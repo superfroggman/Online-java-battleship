@@ -29,7 +29,7 @@ public class OnlineClient {
                 try {
                     String receiveMessage;
                     if ((receiveMessage = receiveRead.readLine()) != null) {
-                        System.out.println(receiveMessage);
+                        Controller.receiveMessage(receiveMessage);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
