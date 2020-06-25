@@ -6,10 +6,9 @@ import java.net.*;
 public class OnlineClient {
 
     static PrintWriter pWrite;
+    public static BufferedReader receiveRead;
 
     public static void connectToServer(String ipDomain, int port) {
-
-        BufferedReader receiveRead;
 
         try {
             Socket sock = new Socket(ipDomain, port);
@@ -23,20 +22,6 @@ public class OnlineClient {
 
         System.out.println("Connected to " + ipDomain + ":" + port);
 
-
-        Thread t = new Thread(() -> {
-            while (true) {
-                try {
-                    String receiveMessage;
-                    if ((receiveMessage = receiveRead.readLine()) != null) {
-                        Controller.receiveMessage(receiveMessage);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        t.start();
     }
 
     public static void sendMessage(String message) {
